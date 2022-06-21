@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static adventofcode2021.day3.binarydiagnostic.DiagnosticReport.*;
+import static java.lang.Integer.parseInt;
 import static java.nio.file.Files.readAllLines;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -74,7 +75,7 @@ public class DiagnosticReportTests {
     private static List<Integer> parseDiagnosticsFile() throws IOException {
         return readAllLines(Paths.get(DIAGNOSTIC_FILE))
                 .stream()
-                .map(x -> Integer.parseInt(x, 2))
+                .map(x -> parseInt(x, 2))
                 .collect(Collectors.toList());
     }
 }

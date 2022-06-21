@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static adventofcode2021.day4.giantsquid.Board.BOARD_SIZE;
+import static java.lang.Integer.parseInt;
 import static java.nio.file.Files.readAllLines;
 import static java.util.stream.Collectors.toList;
 
@@ -48,7 +49,7 @@ public class BingoData {
             var start = i * 3;
             final var end = start + 2;
             if (text.charAt(start) == ' ') start += 1;
-            values[i] = Integer.parseInt(text.substring(start, end));
+            values[i] = parseInt(text.substring(start, end));
         }
         return values;
     }
