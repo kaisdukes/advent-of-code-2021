@@ -22,8 +22,8 @@ public class Vents {
 
     public int countMultipleVentPoints() {
         var points = 0;
-        for (final int[] row : vents) {
-            for (final int count : row) {
+        for (final var row : vents) {
+            for (final var count : row) {
                 if (count >= 2) points++;
             }
         }
