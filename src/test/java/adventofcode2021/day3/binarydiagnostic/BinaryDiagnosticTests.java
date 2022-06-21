@@ -4,7 +4,6 @@ import org.junit.Test;
 
 import java.util.List;
 
-import static adventofcode2021.day3.binarydiagnostic.BinaryDiagnostic.countBits;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
@@ -13,8 +12,8 @@ public class BinaryDiagnosticTests {
 
     @Test
     public void shouldCountBits() {
-        final var counts =
-                countBits(
+        final var diagnostic =
+                new BinaryDiagnostic(
                         List.of(
                                 0b00100,
                                 0b11110,
@@ -29,7 +28,7 @@ public class BinaryDiagnosticTests {
                                 0b00010,
                                 0b01010));
 
-        assertThat(counts, is(equalTo(new int[]{
+        assertThat(diagnostic.countBits(), is(equalTo(new int[]{
                 5, 7, 8, 5, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0})));
     }
 }
