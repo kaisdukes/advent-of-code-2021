@@ -12,13 +12,13 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 
-public class GammaEpsilonTests {
+public class DiagnosticReportTests {
     private static final String DIAGNOSTIC_FILE = "data/day3/diagnostic.txt";
 
     @Test
     public void shouldCountBits() {
         final var diagnostic =
-                new GammaEpsilon(
+                new DiagnosticReport(
                         List.of(
                                 0b00100,
                                 0b11110,
@@ -40,7 +40,7 @@ public class GammaEpsilonTests {
 
     @Test
     public void shouldReadDiagnosticFile() throws IOException {
-        final var diagnostic = new GammaEpsilon(parseDiagnosticsFile());
+        final var diagnostic = new DiagnosticReport(parseDiagnosticsFile());
         assertThat(diagnostic.getGamma() * diagnostic.getEpsilon(), is(equalTo(841526)));
     }
 

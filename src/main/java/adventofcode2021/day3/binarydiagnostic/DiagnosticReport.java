@@ -4,13 +4,13 @@ import java.util.List;
 
 import static java.util.Arrays.copyOf;
 
-public class GammaEpsilon {
+public class DiagnosticReport {
     private final List<Integer> values;
     private final int[] bitCounts;
     private final int gamma;
     private final int epsilon;
 
-    public GammaEpsilon(final List<Integer> values) {
+    public DiagnosticReport(final List<Integer> values) {
         this.values = values;
         this.bitCounts = countBits();
 
