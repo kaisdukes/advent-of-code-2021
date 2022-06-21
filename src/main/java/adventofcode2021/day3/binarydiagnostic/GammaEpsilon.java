@@ -1,11 +1,7 @@
 package adventofcode2021.day3.binarydiagnostic;
 
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import static java.nio.file.Files.readAllLines;
 import static java.util.Arrays.copyOf;
 
 public class GammaEpsilon {
