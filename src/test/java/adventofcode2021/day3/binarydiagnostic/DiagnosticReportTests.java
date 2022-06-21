@@ -62,6 +62,15 @@ public class DiagnosticReportTests {
         assertThat(getGasRating(TEST_VALUES, false), is(10));
     }
 
+    @Test
+    public void shouldGetOxygenAndCO2RatingsFromDiagnosticFile() throws IOException {
+        final var values = parseDiagnosticsFile();
+        final var pair = getGammaAndEpsilon(parseDiagnosticsFile());
+        assertThat(
+                getGasRating(values, true) * getGasRating(values, false),
+                is(equalTo(4790390)));
+    }
+
     private static List<Integer> parseDiagnosticsFile() throws IOException {
         return readAllLines(Paths.get(DIAGNOSTIC_FILE))
                 .stream()
