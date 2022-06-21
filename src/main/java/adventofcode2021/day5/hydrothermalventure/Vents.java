@@ -10,17 +10,13 @@ public class Vents {
         this.vents = new int[width][height];
     }
 
-    public int[][] getVents() {
-        return vents;
-    }
-
     public void add(final Line line) {
         if (line.isHorizontal()) {
             addHorizontalLine(line);
         } else if (line.isVertical()) {
             addVerticalLine(line);
         } else {
-            throw new UnsupportedOperationException("Line is not horizontal or vertical.");
+            addDiagonalLine(line);
         }
     }
 
@@ -52,6 +48,23 @@ public class Vents {
         final var min = min(y1, y2);
         final var max = max(y1, y2);
         for (var y = min; y <= max; y++) {
+            vents[y][x]++;
+        }
+    }
+
+    private void addDiagonalLine(final Line line) {
+        var x1 = line.getX1();
+        var y1 = line.getY1();
+        var x2 = line.getX2();
+        var y2 = line.getY2();
+        if (x1 > x2) {
+            x1 = line.getX2();
+            y1 = line.getY2();
+            x2 = line.getX1();
+            y2 = line.getY1();
+        }
+        final var deltaY = y2 > y1 ? 1 : -1;
+        for (int x = x1, y = y1; x <= x2; x++, y += deltaY) {
             vents[y][x]++;
         }
     }
