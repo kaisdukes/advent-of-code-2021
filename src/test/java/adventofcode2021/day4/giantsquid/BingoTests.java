@@ -22,12 +22,25 @@ public class BingoTests {
         assertThat(play(BINGO_FILE), is(equalTo(63424)));
     }
 
+    @Test
+    public void shouldFindLastWinningBoardForExampleFile() throws IOException {
+        assertThat(playForLastWinningBoard(EXAMPLE_FILE), is(equalTo(1924)));
+    }
+
+    @Test
+    public void shouldFindLastWinningBoardForBingoFile() throws IOException {
+        assertThat(playForLastWinningBoard(BINGO_FILE), is(equalTo(23541)));
+    }
+
     private static int play(final String path) throws IOException {
         final var bingoData = new BingoData(path);
         final var bingo = new Bingo(bingoData);
-        final var pair = bingo.play();
-        final var value = pair.getFirst();
-        final var board = pair.getSecond();
-        return value * board.getScore();
+        return bingo.play();
+    }
+
+    private static int playForLastWinningBoard(final String path) throws IOException {
+        final var bingoData = new BingoData(path);
+        final var bingo = new Bingo(bingoData);
+        return bingo.lastWinningBoard();
     }
 }
