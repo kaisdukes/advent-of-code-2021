@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.util.List;
 
 import static adventofcode2021.day1.sonarsweep.SonarSweep.*;
-import static adventofcode2021.io.Io.readInts;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
