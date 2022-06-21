@@ -24,7 +24,7 @@ public class BinaryDiagnostic {
         var epsilon = 0;
         final var mid = values.size() / 2;
         for (var bitCount : bitCounts) {
-            if (bitCount > mid) gamma += m;
+            if (bitCount >= mid) gamma += m;
             else epsilon += m;
             m <<= 1;
         }
