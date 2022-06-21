@@ -28,7 +28,7 @@ public class BinaryDiagnosticTests {
                                 0b00010,
                                 0b01010));
 
-        assertThat(diagnostic.countBits(), is(equalTo(new int[]{
+        assertThat(diagnostic.getBitCounts(), is(equalTo(new int[]{
                 5, 7, 8, 5, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0})));
     }
 }
