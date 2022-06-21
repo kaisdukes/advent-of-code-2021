@@ -10,6 +10,28 @@ import static org.hamcrest.Matchers.is;
 public class LineTests {
 
     @Test
+    public void shouldDetermineIfLineIsHorizontal() {
+        assertThat(
+                new Line(0, 9, 5, 9).isHorizontal(),
+                is(equalTo(true)));
+
+        assertThat(
+                new Line(2, 2, 2, 1).isHorizontal(),
+                is(equalTo(false)));
+    }
+
+    @Test
+    public void shouldDetermineIfLineIsVertical() {
+        assertThat(
+                new Line(0, 9, 5, 9).isVertical(),
+                is(equalTo(false)));
+
+        assertThat(
+                new Line(2, 2, 2, 1).isVertical(),
+                is(equalTo(true)));
+    }
+
+    @Test
     public void shouldParseLine() {
         assertThat(
                 parseLine("0,9 -> 5,9"),

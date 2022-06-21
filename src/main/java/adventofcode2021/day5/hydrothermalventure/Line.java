@@ -1,6 +1,12 @@
 package adventofcode2021.day5.hydrothermalventure;
 
+import java.io.IOException;
+import java.nio.file.Paths;
+import java.util.List;
+
 import static java.lang.Integer.parseInt;
+import static java.nio.file.Files.readAllLines;
+import static java.util.stream.Collectors.toList;
 
 public class Line {
     private final int x1;
@@ -31,6 +37,14 @@ public class Line {
         return y2;
     }
 
+    public boolean isHorizontal() {
+        return y1 == y2;
+    }
+
+    public boolean isVertical() {
+        return x1 == x2;
+    }
+
     public static Line parseLine(final String text) {
         final var parts = text.split(" -> ");
         final var point1 = parts[0].split(",");
@@ -40,6 +54,13 @@ public class Line {
                 parseInt(point1[1]),
                 parseInt(point2[0]),
                 parseInt(point2[1]));
+    }
+
+    public static List<Line> parseFile(final String path) throws IOException {
+        return readAllLines(Paths.get(path))
+                .stream()
+                .map(Line::parseLine)
+                .collect(toList());
     }
 
     @Override

@@ -1,0 +1,58 @@
+package adventofcode2021.day5.hydrothermalventure;
+
+import static java.lang.Math.max;
+import static java.lang.Math.min;
+
+public class Vents {
+    private final int[][] vents;
+
+    public Vents(final int width, final int height) {
+        this.vents = new int[width][height];
+    }
+
+    public int[][] getVents() {
+        return vents;
+    }
+
+    public void add(final Line line) {
+        if (line.isHorizontal()) {
+            addHorizontalLine(line);
+        } else if (line.isVertical()) {
+            addVerticalLine(line);
+        } else {
+            throw new UnsupportedOperationException("Line is not horizontal or vertical.");
+        }
+    }
+
+    public int countMultipleVentPoints() {
+        var points = 0;
+        for (final int[] row : vents) {
+            for (final int count : row) {
+                if (count >= 2) points++;
+            }
+        }
+        return points;
+    }
+
+    private void addHorizontalLine(final Line line) {
+        final var y = line.getY1();
+        final var x1 = line.getX1();
+        final var x2 = line.getX2();
+        final var min = min(x1, x2);
+        final var max = max(x1, x2);
+        for (var x = min; x <= max; x++) {
+            vents[y][x]++;
+        }
+    }
+
+    private void addVerticalLine(final Line line) {
+        final var x = line.getX1();
+        final var y1 = line.getY1();
+        final var y2 = line.getY2();
+        final var min = min(y1, y2);
+        final var max = max(y1, y2);
+        for (var y = min; y <= max; y++) {
+            vents[y][x]++;
+        }
+    }
+}
