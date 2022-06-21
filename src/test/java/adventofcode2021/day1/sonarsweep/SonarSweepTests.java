@@ -3,9 +3,12 @@ package adventofcode2021.day1.sonarsweep;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static adventofcode2021.day1.sonarsweep.SonarSweep.*;
+import static java.nio.file.Files.readAllLines;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
@@ -23,7 +26,7 @@ public class SonarSweepTests {
     @Test
     public void shouldReturnDepthIncreasesForSonarSweepReport() throws IOException {
         assertThat(
-                depthIncreases(readInts(REPORT_FILE)),
+                depthIncreases(parseReportFile()),
                 is(equalTo(1387)));
     }
 
@@ -44,7 +47,14 @@ public class SonarSweepTests {
     @Test
     public void shouldReturnDepthIncreasesOfSlidingWindowsForSonarSweepReport() throws IOException {
         assertThat(
-                depthIncreases(slidingWindows(readInts(REPORT_FILE))),
+                depthIncreases(slidingWindows(parseReportFile())),
                 is(equalTo(1362)));
+    }
+
+    public static List<Integer> parseReportFile() throws IOException {
+        return readAllLines(Paths.get(REPORT_FILE))
+                .stream()
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 }

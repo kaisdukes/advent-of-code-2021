@@ -3,20 +3,22 @@ package adventofcode2021.day3.binarydiagnostic;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.stream.Collectors;
 
-import static adventofcode2021.day3.binarydiagnostic.BinaryDiagnostic.readBits;
+import static java.nio.file.Files.readAllLines;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 
-public class BinaryDiagnosticTests {
+public class GammaEpsilonTests {
     private static final String DIAGNOSTIC_FILE = "data/day3/diagnostic.txt";
 
     @Test
     public void shouldCountBits() {
         final var diagnostic =
-                new BinaryDiagnostic(
+                new GammaEpsilon(
                         List.of(
                                 0b00100,
                                 0b11110,
@@ -38,7 +40,14 @@ public class BinaryDiagnosticTests {
 
     @Test
     public void shouldReadDiagnosticFile() throws IOException {
-        final var diagnostic = new BinaryDiagnostic(readBits(DIAGNOSTIC_FILE));
+        final var diagnostic = new GammaEpsilon(parseDiagnosticsFile());
         assertThat(diagnostic.getGamma() * diagnostic.getEpsilon(), is(equalTo(841526)));
+    }
+
+    private static List<Integer> parseDiagnosticsFile() throws IOException {
+        return readAllLines(Paths.get(DIAGNOSTIC_FILE))
+                .stream()
+                .map(x -> Integer.parseInt(x, 2))
+                .collect(Collectors.toList());
     }
 }

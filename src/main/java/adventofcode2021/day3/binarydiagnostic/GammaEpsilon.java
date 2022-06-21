@@ -8,13 +8,13 @@ import java.util.stream.Collectors;
 import static java.nio.file.Files.readAllLines;
 import static java.util.Arrays.copyOf;
 
-public class BinaryDiagnostic {
+public class GammaEpsilon {
     private final List<Integer> values;
     private final int[] bitCounts;
     private final int gamma;
     private final int epsilon;
 
-    public BinaryDiagnostic(final List<Integer> values) {
+    public GammaEpsilon(final List<Integer> values) {
         this.values = values;
         this.bitCounts = countBits();
 
@@ -42,13 +42,6 @@ public class BinaryDiagnostic {
 
     public int getEpsilon() {
         return epsilon;
-    }
-
-    public static List<Integer> readBits(final String path) throws IOException {
-        return readAllLines(Paths.get(path))
-                .stream()
-                .map(x -> Integer.parseInt(x, 2))
-                .collect(Collectors.toList());
     }
 
     private int[] countBits() {
