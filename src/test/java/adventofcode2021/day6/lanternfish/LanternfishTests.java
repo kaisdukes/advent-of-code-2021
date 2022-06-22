@@ -31,4 +31,19 @@ public class LanternfishTests {
 
         assertThat(countFish(timers, 80), is(equalTo(386640L)));
     }
+
+    @Test
+    public void shouldCountEternalFishForExampleData() {
+        final var timers = List.of(3, 4, 3, 1, 2);
+        assertThat(countFish(timers, 256), is(equalTo(26984457539L)));
+    }
+
+    @Test
+    public void shouldCountEternalFish() throws IOException {
+        final var timers = Arrays.stream(
+                        Files.readString(Paths.get(LANTERNFISH_FILE)).split(","))
+                .map(Integer::parseInt).collect(toList());
+
+        assertThat(countFish(timers, 256), is(equalTo(1733403626279L)));
+    }
 }
